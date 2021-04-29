@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECD3AF"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|top"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/toolbar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/btnToggle"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/transparent"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bergermenu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="انیس الصادقین"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/logoanis" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:background="#716149"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="منوی اصلی"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/black" />
+
+        <Button
+            android:id="@+id/btnContents"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_corner"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="فهرست مطالب"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_corner"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="جستجو"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnSigned"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_corner"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="نشان شده ها"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnSeenLast"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_corner"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="آخرین مشاهده"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/black" />
+
+
+        <Button
+            android:id="@+id/btnSetting"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_corner"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="تنظیمات"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnAbout"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_corner"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="درباره ی نویسنده"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnRelateUs"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_corner"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="ارتباط با ما"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnCloseApp"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/button_corner"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="خروج کلی"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
