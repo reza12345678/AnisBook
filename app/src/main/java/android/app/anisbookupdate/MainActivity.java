@@ -97,12 +97,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             showcasepanel();
         }
 
+
+/*
+
         if (v.getId() == R.id.btnSetting) {
             Intent actSetting = new Intent(MainActivity.this, SettingActivity.class);
             startActivity(actSetting);
         }
-/*
-
 
         if (v.getId() == R.id.btnContents) {
             Intent actContents = new Intent(MyApplication.mContex, fstContentsActivity.class);

@@ -43,7 +43,6 @@ dependencies {
 
     //material io
     implementation 'com.github.rey5137:material:1.3.1'
-    implementation 'androidx.cardview:cardview:1.0.0'
 
     // showcase panel
     implementation 'com.github.deano2390:MaterialShowcaseView:1.3.4'
