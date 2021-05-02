@@ -26,8 +26,4 @@ public class Utility {
         return Typeface.createFromAsset(MyApplication.mContex.getAssets(), Hawk.get("font_default_AB"));
     }
 
-    private void furn(String s) {
-        toast(s);
-    }
-
 }
