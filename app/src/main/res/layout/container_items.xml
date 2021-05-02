@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.app.anisbookupdate.Utilities.MyTextView_AB
+        android:id="@+id/txtContainer_ab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="farsi container Here" />
+
+    <android.app.anisbookupdate.Utilities.MyTextView_FA
+        android:id="@+id/txtContainer_fa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="farsi container Here" />
+
+
+</LinearLayout>

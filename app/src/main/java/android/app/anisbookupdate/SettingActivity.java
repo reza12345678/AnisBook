@@ -9,6 +9,7 @@ import android.app.anisbookupdate.Utilities.MyApplication;
 import android.app.anisbookupdate.Utilities.MyTextView_AB;
 import android.app.anisbookupdate.Utilities.MyTextView_FA;
 import android.app.anisbookupdate.Utilities.Utility;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Color;
@@ -16,10 +17,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.flask.colorpicker.ColorPickerView;
+import com.flask.colorpicker.OnColorSelectedListener;
+import com.flask.colorpicker.builder.ColorPickerClickListener;
+import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
+import com.orhanobut.hawk.Hawk;
 
 import static android.app.anisbookupdate.Utilities.MyApplication.myDbHelper;
 import static android.app.anisbookupdate.Utilities.Utility.toast;
@@ -216,7 +225,6 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
-    //    @RequiresApi(api = Build.VERSION_CODES.N)
     private void loadDefaults() {
         // set the default setting here
         try {
@@ -266,5 +274,152 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
 
+        if (v.getId() == R.id.btnThemeBack) {
+            ColorPickerDialogBuilder
+                    .with(SettingActivity.this)
+                    .setTitle("گالری انتخاب رنگ پشت زمینه")
+                    .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+                    .density(12)
+                    .setOnColorSelectedListener(new OnColorSelectedListener() {
+                        @Override
+                        public void onColorSelected(int selectedColor) {
+                            Toast.makeText(SettingActivity.this, "شماره ی رنگ مورد نظر" + Integer.toHexString(selectedColor), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setPositiveButton("انتخاب شود", new ColorPickerClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+                            rootView.setBackgroundColor(selectedColor);
+                            bg_color = null;
+                            bg_color = "#" + Integer.toHexString(selectedColor);
+                        }
+                    })
+                    .setNegativeButton("خروج", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            toast("هیچ رنگی انتخاب نگردید");
+                        }
+                    })
+                    .build()
+                    .show();
+        }
+
+        if (v.getId() == R.id.btnTextColor_FA) {
+            ColorPickerDialogBuilder
+                    .with(SettingActivity.this)
+                    .setTitle("گالری انتخاب رنگ نوشته های فارسی")
+                    .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+                    .density(12)
+                    .setOnColorSelectedListener(new OnColorSelectedListener() {
+                        @Override
+                        public void onColorSelected(int selectedColor) {
+                            Toast.makeText(SettingActivity.this, "شماره ی رنگ مورد نظر" + String.valueOf(selectedColor), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setPositiveButton("انتخاب شود", new ColorPickerClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+                            Button btnText_FA = findViewById(R.id.btnTextColor_FA);
+                            btnText_FA.setBackgroundColor(selectedColor);
+                            txtExample_FA.setTextColor(selectedColor);
+                            ft_color_fa = null;
+                            ft_color_fa = "#" + Integer.toHexString(selectedColor);
+                        }
+                    })
+                    .setNegativeButton("خروج", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            toast("هیچ رنگی انتخاب نگردید");
+                        }
+                    })
+                    .build()
+                    .show();
+        }
+
+        if (v.getId() == R.id.btnTextColor_AB) {
+            ColorPickerDialogBuilder
+                    .with(SettingActivity.this)
+                    .setTitle("گالری انتخاب رنگ نوشته های عربی")
+                    .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+                    .density(12)
+                    .setOnColorSelectedListener(new OnColorSelectedListener() {
+                        @Override
+                        public void onColorSelected(int selectedColor) {
+                            Toast.makeText(SettingActivity.this, "شماره ی رنگ مورد نظر" + String.valueOf(selectedColor), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setPositiveButton("انتخاب شود", new ColorPickerClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+                            Button btnText_AB = findViewById(R.id.btnTextColor_AB);
+                            btnText_AB.setBackgroundColor(selectedColor);
+                            txtExample_AB.setTextColor(selectedColor);
+                            ft_color_ab = null;
+                            ft_color_ab = "#" + Integer.toHexString(selectedColor);
+                        }
+                    })
+                    .setNegativeButton("خروج", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            toast("هیچ رنگی انتخاب نگردید");
+                        }
+                    })
+                    .build()
+                    .show();
+        }
+
+        if (v.getId() == R.id.btnChooseFont_FA) {
+            try {
+                myDbHelper.EditDataBase();
+                myDbHelper.update_fontFA(choose_fontFA, font_position_fa);
+                Hawk.put("font_default_FA", choose_fontFA);
+                toast("تغییرات داده شده اعمال گردید");
+            } catch (SQLException e) {
+                toast(e.toString());
+            }
+        }
+
+        if (v.getId() == R.id.btnChooseFont_AB) {
+            try {
+                myDbHelper.EditDataBase();
+                myDbHelper.update_fontAB(choose_fontAB, font_position_ab);
+                Hawk.put("font_default_AB", choose_fontAB);
+                toast("تغییرات داده شده اعمال گردید");
+            } catch (SQLException e) {
+                toast(e.toString());
+            }
+        }
+
+        if (v.getId() == R.id.btnChangeFontSize_FA) {
+            try {
+                myDbHelper.EditDataBase();
+                myDbHelper.update_fontSizeFA(fontSize_FA);
+                Hawk.put("font_size_FA", (float) fontSize_FA);
+                toast("تغییرات داده شده اعمال گردید");
+            } catch (SQLException e) {
+                toast(e.toString());
+            }
+        }
+
+        if (v.getId() == R.id.btnChangeFontSize_AB) {
+            try {
+                myDbHelper.EditDataBase();
+                myDbHelper.update_fontSizeAB(fontSize_AB);
+                Hawk.put("font_size_AB", (float) fontSize_AB);
+                toast("تغییرات داده شده اعمال گردید");
+            } catch (SQLException e) {
+                toast(e.toString());
+            }
+        }
+
+        if (v.getId() == R.id.btnChooseTheme) {
+            try {
+                myDbHelper.EditDataBase();
+                myDbHelper.update_theme(String.valueOf(bg_color), String.valueOf(ft_color_fa), String.valueOf(ft_color_ab));
+                toast("تغییرات داده شده اعمال گردید");
+            } catch (SQLException e) {
+                toast(e.toString());
+            }
+        }
     }
 }
