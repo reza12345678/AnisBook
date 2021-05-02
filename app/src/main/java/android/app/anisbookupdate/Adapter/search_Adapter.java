@@ -1,6 +1,6 @@
 package android.app.anisbookupdate.Adapter;
 
-import android.app.anisbook.R;
+import android.app.anisbookupdate.R;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +10,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Search_Adapter extends BaseAdapter {
+public class search_Adapter extends BaseAdapter {
 
     Context mCon;
 
     ArrayList<String> lstSearch;
 
-    public Search_Adapter(Context mCon, ArrayList<String> lstSearch) {
+    public search_Adapter(Context mCon, ArrayList<String> lstSearch) {
         this.mCon = mCon;
         this.lstSearch = lstSearch;
     }

@@ -18,14 +18,14 @@ import java.util.List;
 import static android.app.anisbookupdate.Utilities.MyApplication.myDbHelper;
 import static android.app.anisbookupdate.Utilities.Utility.toast;
 
-public class Container_adapter extends BaseAdapter {
+public class container_adapter extends BaseAdapter {
     Context mCon;
     List<Container_Model> model;
 
     String ft_color_fa = null, ft_color_ab = null;
     Cursor cur = null;
 
-    public Container_adapter(Context mCon, List<Container_Model> model) {
+    public container_adapter(Context mCon, List<Container_Model> model) {
         this.mCon = mCon;
         this.model = model;
     }

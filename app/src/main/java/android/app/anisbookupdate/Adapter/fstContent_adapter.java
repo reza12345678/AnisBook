@@ -1,7 +1,7 @@
 package android.app.anisbookupdate.Adapter;
 
-import android.app.anisbook.R;
-import android.app.anisbook.Utilities.MyApplication;
+import android.app.anisbookupdate.R;
+import android.app.anisbookupdate.Utilities.MyApplication;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
