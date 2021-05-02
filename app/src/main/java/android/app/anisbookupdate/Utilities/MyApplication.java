@@ -2,13 +2,9 @@ package android.app.anisbookupdate.Utilities;
 
 import android.app.Application;
 import android.app.anisbookupdate.Database.AnisDataBase;
-//import android.app.anisbookupdate.sndContentsActivity;
-import android.app.anisbookupdate.Database.AnisDataBase;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.util.Log;
 
 import com.orhanobut.hawk.Hawk;
 
@@ -27,7 +23,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mContex = this;
-
 
         myDbHelper = new AnisDataBase(MyApplication.mContex);
         try {

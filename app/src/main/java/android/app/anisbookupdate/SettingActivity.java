@@ -216,7 +216,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.N)
+    //    @RequiresApi(api = Build.VERSION_CODES.N)
     private void loadDefaults() {
         // set the default setting here
         try {
@@ -249,8 +249,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         spnFont_FA.setSelection(font_position_fa);
         spnFont_AB.setSelection(font_position_ab);
 
-        sldFontFA.setProgress(fontSizeFA_Default, false);
-        sldFontAB.setProgress(fontSizeAB_Default, false);
+        sldFontFA.setProgress(fontSizeFA_Default);
+        sldFontAB.setProgress(fontSizeAB_Default);
 
         txtFontSizeFA.setTextSize((float) fontSizeFA_Default);
         txtFontSizeAB.setTextSize((float) fontSizeAB_Default);
