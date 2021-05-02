@@ -102,11 +102,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(actSetting);
         }
 
-/*
         if (v.getId() == R.id.btnContents) {
             Intent actContents = new Intent(MyApplication.mContex, fstContentsActivity.class);
             startActivity(actContents);
         }
+/*
+
 
         if (v.getId() == R.id.btnRelateUs) {
             Intent actAbout = new Intent(MyApplication.mContex, RelateUsActivity.class);
