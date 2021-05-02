@@ -234,7 +234,7 @@
             android:max="100"
             android:min="10" />
 
-        <android.app.anisbookupdate.Utilities.MyTextView_AB
+        <android.app.anisbookupdate.Utilities.MyTextView_FA
             android:id="@+id/txtFontSize_FA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

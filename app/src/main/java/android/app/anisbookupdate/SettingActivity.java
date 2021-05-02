@@ -1,23 +1,28 @@
 package android.app.anisbookupdate;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.anisbookupdate.Spinners.FontAB_Adapter;
+import android.app.anisbookupdate.Spinners.FontFA_Adapter;
+import android.app.anisbookupdate.Utilities.MyApplication;
 import android.app.anisbookupdate.Utilities.MyTextView_AB;
 import android.app.anisbookupdate.Utilities.MyTextView_FA;
 import android.app.anisbookupdate.Utilities.Utility;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.material.slider.Slider;
-
 import static android.app.anisbookupdate.Utilities.MyApplication.myDbHelper;
+import static android.app.anisbookupdate.Utilities.Utility.toast;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,7 +37,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     int font_position_fa, font_position_ab;
     int fontSize_FA, fontSize_AB;
 
-    Slider sldFontFA, sldFontAB;
+    SeekBar sldFontFA, sldFontAB;
     Cursor cur = null;
     String spn_fontNameFA_Default, spn_fontNameAB_Default;
     int fontSizeFA_Default, fontSizeAB_Default;
@@ -41,17 +46,18 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
     String bg_color = null, ft_color_fa = null, ft_color_ab = null;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
         rootView = findViewById(R.id.rootView);
-/*        bind();
-        loadDefaults();*/
+        bind();
+        loadDefaults();
     }
 
-/*    private void bind() {
+    private void bind() {
         txtExplainFontFA = findViewById(R.id.txtExplain_FA);
         txtExplainFontAB = findViewById(R.id.txtExplain_AB);
 
@@ -68,19 +74,40 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         txtExample_FA = findViewById(R.id.txtExample_FA);
         txtExample_AB = findViewById(R.id.txtExample_AB);
 
-        sldFontFA.setOnPositionChangeListener(new Slider.OnPositionChangeListener() {
+
+        sldFontFA.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onPositionChanged(Slider view, boolean fromUser, float oldPos, float newPos, int oldValue, int newValue) {
-                txtFontSizeFA.setTextSize((float) newValue);
-                fontSize_FA = newValue;
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                txtFontSizeFA.setTextSize(progress);
+                fontSize_FA = progress;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
 
-        sldFontAB.setOnPositionChangeListener(new Slider.OnPositionChangeListener() {
+        sldFontAB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onPositionChanged(Slider view, boolean fromUser, float oldPos, float newPos, int oldValue, int newValue) {
-                txtFontSizeAB.setTextSize((float) newValue);
-                fontSize_AB = newValue;
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                txtFontSizeAB.setTextSize(progress);
+                fontSize_AB = progress;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
 
@@ -187,9 +214,10 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         });
-    }*/
+    }
 
-/*    private void loadDefaults() {
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void loadDefaults() {
         // set the default setting here
         try {
             myDbHelper.openDataBase();
@@ -221,12 +249,12 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         spnFont_FA.setSelection(font_position_fa);
         spnFont_AB.setSelection(font_position_ab);
 
-        sldFontFA.setValue((float) fontSizeFA_Default, false);
-        sldFontAB.setValue((float) fontSizeAB_Default, false);
+        sldFontFA.setProgress(fontSizeFA_Default, false);
+        sldFontAB.setProgress(fontSizeAB_Default, false);
 
         txtFontSizeFA.setTextSize((float) fontSizeFA_Default);
         txtFontSizeAB.setTextSize((float) fontSizeAB_Default);
-    }*/
+    }
 
     @Override
     public void onBackPressed() {

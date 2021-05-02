@@ -12,7 +12,7 @@ import com.orhanobut.hawk.Hawk;
 public class MyTextView_FA extends AppCompatTextView {
     public MyTextView_FA(@NonNull Context context) {
         super(context);
-        //setTypeface(Utility.getTypeFace_FA());
+        setTypeface(Utility.getTypeFace_FA());
       //  setTextSize(Hawk.get("font_size_FA"));
     }
 
