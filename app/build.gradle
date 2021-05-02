@@ -41,8 +41,8 @@ dependencies {
     //this library can save data HAWK
     implementation "com.orhanobut:hawk:2.0.1"
 
-    //material io
-    implementation 'com.github.rey5137:material:1.3.1'
+/*    //material io
+    implementation 'com.github.rey5137:material:1.3.1'*/
 
     // showcase panel
     implementation 'com.github.deano2390:MaterialShowcaseView:1.3.4'

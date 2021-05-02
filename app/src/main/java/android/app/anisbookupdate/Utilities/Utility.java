@@ -3,6 +3,7 @@ package android.app.anisbookupdate.Utilities;
 import android.Manifest;
 import android.graphics.Typeface;
 import android.widget.Toast;
+
 import com.orhanobut.hawk.Hawk;
 
 import java.util.List;
@@ -23,6 +24,10 @@ public class Utility {
 
     public static Typeface getTypeFace_AB() {
         return Typeface.createFromAsset(MyApplication.mContex.getAssets(), Hawk.get("font_default_AB"));
+    }
+
+    private void furn(String s) {
+        toast(s);
     }
 
 }
