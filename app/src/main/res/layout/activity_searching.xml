@@ -7,10 +7,45 @@
     android:orientation="vertical"
     tools:context=".SearchingActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/toolbar"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/rdbSearchInPersian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:checked="true"
+                android:layoutDirection="rtl"
+                android:text="جستجو در مطالب فارسی و ترجمه ها" />
+
+            <RadioButton
+                android:id="@+id/rdbSearchInArabic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:layoutDirection="rtl"
+                android:text="جستجو در مطالب عربی" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
     <AutoCompleteTextView
         android:id="@+id/edSearch"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAlignment="textStart" />
 
     <ListView
         android:id="@+id/lstSearch"

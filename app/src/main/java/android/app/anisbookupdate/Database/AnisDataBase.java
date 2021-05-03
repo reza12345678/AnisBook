@@ -151,8 +151,8 @@ public class AnisDataBase extends SQLiteOpenHelper {
         return myDataBase.rawQuery("Select * from tblSetting where pa_id = 1", null);
     }
 
-    public Cursor search_translate(String param) {
-        return myDataBase.rawQuery("SELECT * FROM tblContainer where translate like '%" + param + "%'", null);
+    public Cursor search_fields(String fieldContain, String param) {
+        return myDataBase.rawQuery("SELECT * FROM tblContainer where " + fieldContain + " like '%" + param + "%'", null);
     }
 
     public void update_tblAnis(String field_name, int value, int pa_id) {

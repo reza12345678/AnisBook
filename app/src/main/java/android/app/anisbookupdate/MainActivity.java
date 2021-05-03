@@ -106,6 +106,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent actContents = new Intent(MyApplication.mContex, fstContentsActivity.class);
             startActivity(actContents);
         }
+
+        if (v.getId() == R.id.btnSearch) {
+            Intent actSearch = new Intent(MainActivity.this, SearchingActivity.class);
+            startActivity(actSearch);
+        }
 /*
 
 
@@ -117,10 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.btnSeenLast) {
         }
 
-        if (v.getId() == R.id.btnSearch) {
-            Intent actSearch = new Intent(MainActivity.this, SearchingActivity.class);
-            startActivity(actSearch);
-        }
+
 */
 
     }
