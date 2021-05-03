@@ -11,9 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AnisBookUpdate">
         <activity
-            android:name=".fstContentsActivity"
+            android:name=".sndContentsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".ContainerActivity" />
+        <activity
+            android:name=".fstContentsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ContainerActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".SettingActivity" />
         <activity
             android:name=".MainActivity"

@@ -7,12 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".ContainerActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/toolbar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="30dp"
+                android:text="فهرست مطالب"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </RelativeLayout>
+
 
     <ListView
         android:id="@+id/lstContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="55dp"
         android:divider="@null"
         android:dividerHeight="0dp" />
 
