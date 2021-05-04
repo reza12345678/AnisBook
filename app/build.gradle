@@ -49,4 +49,7 @@ dependencies {
 
     // color picker dialog box
     implementation 'com.github.QuadFlask:colorpicker:0.0.15'
+
+    //animate everything
+    implementation "com.andkulikov:transitionseverywhere:2.1.0"
 }

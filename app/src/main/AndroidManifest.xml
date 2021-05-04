@@ -10,9 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AnisBookUpdate">
+        <activity android:name=".SplashActivity"></activity>
         <activity
             android:name=".SearchingActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".sndContentsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
