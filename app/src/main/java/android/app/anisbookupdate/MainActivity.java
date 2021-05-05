@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btnCloseApp).setOnClickListener(this);
         findViewById(R.id.btnSeenLast).setOnClickListener(this);
         findViewById(R.id.btnRelateUs).setOnClickListener(this);
+        findViewById(R.id.btnAbout).setOnClickListener(this);
         findViewById(R.id.btnSearch).setOnClickListener(this);
 
     }
@@ -111,19 +113,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent actSearch = new Intent(MainActivity.this, SearchingActivity.class);
             startActivity(actSearch);
         }
-/*
-
 
         if (v.getId() == R.id.btnRelateUs) {
-            Intent actAbout = new Intent(MyApplication.mContex, RelateUsActivity.class);
+            Intent actRelated = new Intent(MyApplication.mContex, RelatedActivity.class);
+            startActivity(actRelated);
+        }
+
+        if (v.getId() == R.id.btnAbout) {
+            Intent actAbout = new Intent(MyApplication.mContex, AboutActivity.class);
             startActivity(actAbout);
         }
 
-        if (v.getId() == R.id.btnSeenLast) {
-        }
-
-
-*/
 
     }
 }
