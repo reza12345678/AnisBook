@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".RelatedActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:src="@drawable/splashlogo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="این برنامه برای موسسه دعاپژوهی صادقین نوشته شده است و برای این کانون هرکاری هم بکنیم کم است زیرا زحمت افرادی مثل من را زیاد کشیده اند در نتیجه اینها که چیزی نیست و باید بیشتر از موارد برای آن زحمت کشید و راههای زیادی را متحمل شد در نتیجه این که میگوئیم نمی توان در این نوشته همه از روی صدق و وفاست ." />
+
+
+</LinearLayout>

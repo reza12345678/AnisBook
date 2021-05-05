@@ -10,14 +10,14 @@
     tools:context=".AboutActivity">
 
     <ImageView
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:src="@drawable/splashlogo" />
+        android:scaleType="fitXY"
+        android:src="@drawable/imgabout" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="این برنامه به سفارش کانون دعا پژوهی صادقین نوشته شده است . کلیه حقوق آن متعلق به این کانون می باشد . لطفا هرگونه سوال یا پرسشی درباره ی این برنامه دارید میتوانید ما را از طریق این سایت در جریان بگذارید زیرا کلیه ایم امور توسط مدیر این سایت هدایت میشود." />
-
+        android:text="آقایی که عکسش در بالا نمایش داده شده است آقای ما می باشد و من ایشان را خیلی دوست دارم و همیشه هم نوکرشان هستم فقط باید در این ادعا صادق باشم و الا کار از کار گذشته برادر . این را می نویسم که متنی در این بین نوشته باشم و خالی نباشد در هر صورت این راه که میری به ترکستان نیست به بهشت است همین را میگویم و دیگر هیچ" />
 </LinearLayout>
