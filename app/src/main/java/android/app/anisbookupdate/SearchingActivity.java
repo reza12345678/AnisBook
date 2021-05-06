@@ -92,4 +92,12 @@ public class SearchingActivity extends AppCompatActivity {
         myDbHelper.close();
         this.finish();
     }
+
+
+/*
+    Spannable spanText = Spannable.Factory.getInstance().newSpannable(holder.country.getText()); // <- EDITED: Use the original string, as `country` has been converted to lowercase.
+        spanText.setSpan(new ForegroundColorSpan(Color.RED), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+*/
+
+
 }

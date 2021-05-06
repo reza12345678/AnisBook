@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -34,6 +35,7 @@ public class ContainerActivity extends AppCompatActivity {
 
     String bg_color = null;
 
+    public int tblAnis_id;
     Switch swhSign;
 
     @Override
@@ -59,16 +61,30 @@ public class ContainerActivity extends AppCompatActivity {
             }
         });
 
+        swhSign.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (swhSign.isChecked()) {
+                    try {
+                        myDbHelper.EditDataBase();
+                    } catch (SQLException e) {
+                        toast(e.toString());
+                    }
+                    myDbHelper.update_tblAnis("favorite", 1, tblAnis_id);
+                    toast("این قسمت به لیست نشان شده ها اضافه گردید");
+                } else if (!swhSign.isChecked()) {
+                    try {
+                        myDbHelper.EditDataBase();
+                    } catch (SQLException e) {
+                        toast(e.toString());
+                    }
+                    myDbHelper.update_tblAnis("favorite", 0, tblAnis_id);
+                    toast("این قسمت از لیست نشان شده ها حذف گردید");
+                }
 
-        if (swhSign.isChecked()) {
-            try {
-                myDbHelper.EditDataBase();
-            } catch (SQLException e) {
-                toast(e.toString());
             }
+        });
 
-            //   cur =myDbHelper.update_tblAnis("favorite", 1, );
-        }
 
     }
 
@@ -79,7 +95,7 @@ public class ContainerActivity extends AppCompatActivity {
             toast(e.toString());
         }
 
-        int tblAnis_id = Hawk.get("tblAnis_id");
+        tblAnis_id = Hawk.get("tblAnis_id");
         Hawk.delete("tblAnis_id");
         cur = myDbHelper.get_container(tblAnis_id);
 
