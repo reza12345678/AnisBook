@@ -114,7 +114,7 @@ public class ContainerActivity extends AppCompatActivity {
         lstContainer.setAdapter(list_adapter);
 
 
-        cursor = myDbHelper.get_all("favorite", tblAnis_id);
+        cursor = myDbHelper.get_all("pa_id", tblAnis_id);
         if (cursor.getCount() == 0) {
             return;
         } else {
