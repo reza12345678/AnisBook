@@ -2,7 +2,7 @@ package android.app.anisbookupdate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.anisbookupdate.Adapter.search_Adapter;
+import android.app.anisbookupdate.Adapter.search_adapter;
 import android.app.anisbookupdate.Utilities.MyApplication;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -51,7 +51,7 @@ public class SearchingActivity extends AppCompatActivity {
                     cur = myDbHelper.search_fields("translate", txt.getText().toString());
                 }
                 ArrayList<String> theList = new ArrayList<>();
-                search_Adapter list_adapter = new search_Adapter(MyApplication.mContex, theList);
+                search_adapter list_adapter = new search_adapter(MyApplication.mContex, theList);
 
                 if (cur.getCount() == 0) {
                     lstSearch.setAdapter(null);

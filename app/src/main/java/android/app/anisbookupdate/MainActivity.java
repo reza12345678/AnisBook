@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btnRelateUs).setOnClickListener(this);
         findViewById(R.id.btnAbout).setOnClickListener(this);
         findViewById(R.id.btnSearch).setOnClickListener(this);
+        findViewById(R.id.btnSigned).setOnClickListener(this);
 
     }
 
@@ -122,6 +123,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.btnAbout) {
             Intent actAbout = new Intent(MyApplication.mContex, AboutActivity.class);
             startActivity(actAbout);
+        }
+
+        if (v.getId() == R.id.btnSigned) {
+            Intent actSign = new Intent(MyApplication.mContex, SignedActivity.class);
+            startActivity(actSign);
         }
 
 

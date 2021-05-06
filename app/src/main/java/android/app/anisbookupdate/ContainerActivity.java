@@ -35,7 +35,7 @@ public class ContainerActivity extends AppCompatActivity {
 
     String bg_color = null;
 
-    public int tblAnis_id;
+    public int tblAnis_id, favorite_Id;
     Switch swhSign;
 
     @Override
@@ -113,6 +113,19 @@ public class ContainerActivity extends AppCompatActivity {
         container_adapter list_adapter = new container_adapter(MyApplication.mContex, list_model);
         lstContainer.setAdapter(list_adapter);
 
+
+        cursor = myDbHelper.get_all("favorite", tblAnis_id);
+        if (cursor.getCount() == 0) {
+            return;
+        } else {
+            while (cursor.moveToNext()) {
+                favorite_Id = cursor.getInt(3);
+            }
+        }
+        if (favorite_Id == 1)
+            swhSign.setChecked(true);
+        else
+            swhSign.setChecked(false);
 
         cursor = myDbHelper.get_default_setting();
         if (cursor.getCount() == 0) {

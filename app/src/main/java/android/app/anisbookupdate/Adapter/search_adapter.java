@@ -10,13 +10,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class search_Adapter extends BaseAdapter {
+public class search_adapter extends BaseAdapter {
 
     Context mCon;
 
     ArrayList<String> lstSearch;
 
-    public search_Adapter(Context mCon, ArrayList<String> lstSearch) {
+    public search_adapter(Context mCon, ArrayList<String> lstSearch) {
         this.mCon = mCon;
         this.lstSearch = lstSearch;
     }

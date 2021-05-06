@@ -119,7 +119,7 @@ public class AnisDataBase extends SQLiteOpenHelper {
         return myDataBase.rawQuery("SELECT pa_id FROM tblAnis WHERE title = '" + param + "'", null);
     }
 
-    public Cursor get_all(String field, String param) {
+    public Cursor get_all(String field, Object param) {
         return myDataBase.rawQuery("SELECT * FROM tblAnis WHERE " + field + "= '" + param + "'", null);
     }
 
