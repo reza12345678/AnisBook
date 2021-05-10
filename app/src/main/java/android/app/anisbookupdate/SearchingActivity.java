@@ -6,9 +6,12 @@ import android.app.anisbookupdate.Adapter.search_adapter;
 import android.app.anisbookupdate.Utilities.MyApplication;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Spannable;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -60,10 +63,15 @@ public class SearchingActivity extends AppCompatActivity {
                     while (cur.moveToNext())
                         if (rdbSearchArabic.isChecked())
                             theList.add(cur.getString(1));
-                        else if (rdbSearchPersian.isChecked())
-                            theList.add(cur.getString(2));
-                }
+                        else if (rdbSearchPersian.isChecked()) {
+                            int startPos = cur.getString(2).indexOf(-1);
+                            int endPos = startPos + cur.getString(2).length();
+                            Spannable spanText = Spannable.Factory.getInstance().newSpannable(cur.getString(2)); // <- EDITED: Use the original string, as `country` has been converted to lowercase.
+                            spanText.setSpan(new ForegroundColorSpan(Color.RED), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
+                            theList.add(cur.getString(2));
+                        }
+                }
                 lstSearch.setAdapter(list_adapter);
 
                 if (count == 0) {
