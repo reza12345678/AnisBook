@@ -37,6 +37,11 @@
                 android:layoutDirection="rtl"
                 android:text="جستجو در مطالب عربی" />
 
+            <TextView
+                android:id="@+id/textColors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="test for me" />
         </RadioGroup>
 
     </LinearLayout>

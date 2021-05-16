@@ -2,6 +2,10 @@ package android.app.anisbookupdate.Adapter;
 
 import android.app.anisbookupdate.R;
 import android.content.Context;
+import android.graphics.Color;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

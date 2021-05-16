@@ -10,11 +10,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannedString;
 import android.text.TextWatcher;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -27,6 +31,7 @@ public class SearchingActivity extends AppCompatActivity {
     Cursor cur = null;
     ListView lstSearch;
     RadioButton rdbSearchPersian, rdbSearchArabic;
+    TextView txtColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,13 @@ public class SearchingActivity extends AppCompatActivity {
                     toast(e.toString());
                 }
 
+
+/*                SpannableString spannableString = new SpannableString(txt.getText().toString());
+                ForegroundColorSpan foregroundSpan = new ForegroundColorSpan(Color.RED);
+                spannableString.setSpan(foregroundSpan, 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                txtColor.setText(spannableString);*/
+
                 if (rdbSearchArabic.isChecked()) {
                     cur = myDbHelper.search_fields("contain", txt.getText().toString());
                 } else if (rdbSearchPersian.isChecked()) {
@@ -61,16 +73,17 @@ public class SearchingActivity extends AppCompatActivity {
                     return;
                 } else {
                     while (cur.moveToNext())
-                        if (rdbSearchArabic.isChecked())
-                            theList.add(cur.getString(1));
-                        else if (rdbSearchPersian.isChecked()) {
-                            int startPos = cur.getString(2).indexOf(-1);
-                            int endPos = startPos + cur.getString(2).length();
-                            Spannable spanText = Spannable.Factory.getInstance().newSpannable(cur.getString(2)); // <- EDITED: Use the original string, as `country` has been converted to lowercase.
-                            spanText.setSpan(new ForegroundColorSpan(Color.RED), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        if (rdbSearchArabic.isChecked()) {
 
+                            SpannableString spannableString = new SpannableString(cur.getString(1));
+                            ForegroundColorSpan foregroundSpan = new ForegroundColorSpan(Color.RED);
+                            spannableString.setSpan(foregroundSpan, 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                            txtColor.setText(spannableString);
+
+                            theList.add(spannableString.toString());
+                        } else if (rdbSearchPersian.isChecked())
                             theList.add(cur.getString(2));
-                        }
                 }
                 lstSearch.setAdapter(list_adapter);
 
@@ -87,6 +100,9 @@ public class SearchingActivity extends AppCompatActivity {
     }
 
     private void bind() {
+
+        txtColor = findViewById(R.id.textColors);
+
         txt = findViewById(R.id.edSearch);
         lstSearch = findViewById(R.id.lstSearch);
 
@@ -102,10 +118,31 @@ public class SearchingActivity extends AppCompatActivity {
     }
 
 
-/*
-    Spannable spanText = Spannable.Factory.getInstance().newSpannable(holder.country.getText()); // <- EDITED: Use the original string, as `country` has been converted to lowercase.
-        spanText.setSpan(new ForegroundColorSpan(Color.RED), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-*/
+    private void highlightString(String input, TextView mTextView) {
+
+        //Get the text from text view and create a spannable string
+        SpannableString spannableString = new SpannableString(mTextView.getText());
+
+        //Get the previous spans and remove them
+        BackgroundColorSpan[] backgroundSpans = spannableString.getSpans(0, spannableString.length(), BackgroundColorSpan.class);
+        for (BackgroundColorSpan span : backgroundSpans) {
+            spannableString.removeSpan(span);
+        }
+
+        //Search for all occurrences of the keyword in the string
+        int indexOfKeyword = spannableString.toString().indexOf(input);
+
+        while (indexOfKeyword > 0) {
+            //Create a background color span on the keyword
+            spannableString.setSpan(new BackgroundColorSpan(Color.YELLOW), indexOfKeyword, indexOfKeyword + input.length(), SpannedString.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            //Get the next index of the keyword
+            indexOfKeyword = spannableString.toString().indexOf(input, indexOfKeyword + input.length());
+        }
+
+        //Set the final text on TextView
+        mTextView.setText(spannableString);
+    }
 
 
 }
