@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.SpannedString;
 import android.text.TextWatcher;
 import android.text.style.BackgroundColorSpan;
@@ -21,6 +22,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static android.app.anisbookupdate.Utilities.MyApplication.myDbHelper;
 import static android.app.anisbookupdate.Utilities.Utility.toast;
@@ -76,8 +79,10 @@ public class SearchingActivity extends AppCompatActivity {
 
                             theList.add(cur.getString(1));
                         } else if (rdbSearchPersian.isChecked()) {
-                            String curField = highlightString(txt.getText().toString(), cur.getString(2));
+                            String curField = coloringTextSearch(cur.getString(2), txt.getText().toString());
+
                             txtColor.setText(curField);
+
                             theList.add(curField);
                         }
                 }
@@ -140,6 +145,42 @@ public class SearchingActivity extends AppCompatActivity {
         //Set the final text on TextView
         return spannableString.toString();
     }
+
+
+
+
+    public String coloringTextSearch(String cursorText, String textToSearch){
+
+        //Spannable string to highlight matching searched words
+        SpannableString spannableStringSearch = null;
+
+        if ((textToSearch != null) && (!textToSearch.isEmpty())) {
+            spannableStringSearch = new SpannableString(cursorText);
+
+            //compile the pattern of input text
+            Pattern pattern = Pattern.compile(textToSearch,
+                    Pattern.CASE_INSENSITIVE);
+
+            //giving the compliled pattern to matcher to find matching pattern in cursor text
+            Matcher matcher = pattern.matcher(cursorText);
+            spannableStringSearch.setSpan(new BackgroundColorSpan(
+                            Color.TRANSPARENT), 0, spannableStringSearch.length(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            while (matcher.find()) {
+
+                //highlight all matching words in cursor with white background(since i have a colorfull background image)
+                spannableStringSearch.setSpan(new BackgroundColorSpan(
+                                Color.WHITE), matcher.start(), matcher.end(),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+        }
+
+            //else set plain cursor text
+            return spannableStringSearch.toString();
+
+    }
+
+
 
 
 }
