@@ -66,7 +66,6 @@ public class SearchingActivity extends AppCompatActivity {
                     cur = myDbHelper.search_fields("translate", txt.getText().toString());
                 }
                 ArrayList<String> theList = new ArrayList<>();
-                search_adapter list_adapter = new search_adapter(MyApplication.mContex, theList);
 
                 if (cur.getCount() == 0) {
                     lstSearch.setAdapter(null);
@@ -75,16 +74,14 @@ public class SearchingActivity extends AppCompatActivity {
                     while (cur.moveToNext())
                         if (rdbSearchArabic.isChecked()) {
 
-                            SpannableString spannableString = new SpannableString(cur.getString(1));
-                            ForegroundColorSpan foregroundSpan = new ForegroundColorSpan(Color.RED);
-                            spannableString.setSpan(foregroundSpan, 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-                            txtColor.setText(spannableString);
-
-                            theList.add(spannableString.toString());
-                        } else if (rdbSearchPersian.isChecked())
-                            theList.add(cur.getString(2));
+                            theList.add(cur.getString(1));
+                        } else if (rdbSearchPersian.isChecked()) {
+                            String curField = highlightString(txt.getText().toString(), cur.getString(2));
+                            txtColor.setText(curField);
+                            theList.add(curField);
+                        }
                 }
+                search_adapter list_adapter = new search_adapter(MyApplication.mContex, theList);
                 lstSearch.setAdapter(list_adapter);
 
                 if (count == 0) {
@@ -118,10 +115,10 @@ public class SearchingActivity extends AppCompatActivity {
     }
 
 
-    private void highlightString(String input, TextView mTextView) {
+    private String highlightString(String input, String mTextView) {
 
         //Get the text from text view and create a spannable string
-        SpannableString spannableString = new SpannableString(mTextView.getText());
+        SpannableString spannableString = new SpannableString(mTextView);
 
         //Get the previous spans and remove them
         BackgroundColorSpan[] backgroundSpans = spannableString.getSpans(0, spannableString.length(), BackgroundColorSpan.class);
@@ -141,7 +138,7 @@ public class SearchingActivity extends AppCompatActivity {
         }
 
         //Set the final text on TextView
-        mTextView.setText(spannableString);
+        return spannableString.toString();
     }
 
 
