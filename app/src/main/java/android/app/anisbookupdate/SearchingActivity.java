@@ -69,6 +69,7 @@ public class SearchingActivity extends AppCompatActivity {
                     cur = myDbHelper.search_fields("translate", txt.getText().toString());
                 }
                 ArrayList<String> theList = new ArrayList<>();
+                search_adapter list_adapter = new search_adapter(MyApplication.mContex, theList, txt.getText().toString());
 
                 if (cur.getCount() == 0) {
                     lstSearch.setAdapter(null);
@@ -79,14 +80,15 @@ public class SearchingActivity extends AppCompatActivity {
 
                             theList.add(cur.getString(1));
                         } else if (rdbSearchPersian.isChecked()) {
+/*
                             String curField = coloringTextSearch(cur.getString(2), txt.getText().toString());
 
                             txtColor.setText(curField);
+*/
 
-                            theList.add(curField);
+                            theList.add(cur.getString(2));
                         }
                 }
-                search_adapter list_adapter = new search_adapter(MyApplication.mContex, theList);
                 lstSearch.setAdapter(list_adapter);
 
                 if (count == 0) {
