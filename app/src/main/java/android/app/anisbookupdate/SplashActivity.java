@@ -32,12 +32,12 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Transition tr = new Explode();
-                tr.setDuration(500);
+                tr.setDuration(3000);
                 TransitionManager.beginDelayedTransition(root, tr);
                 img.setVisibility(View.VISIBLE);
                 txt.setVisibility(View.VISIBLE);
             }
-        }, 100);
+        }, 1000);
 
 
         new Handler().postDelayed(new Runnable() {
@@ -47,6 +47,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(ACTMain);
                 finish();
             }
-        }, 1000);
+        }, 5000);
     }
 }

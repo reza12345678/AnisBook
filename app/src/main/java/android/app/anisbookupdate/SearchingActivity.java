@@ -56,13 +56,6 @@ public class SearchingActivity extends AppCompatActivity {
                     toast(e.toString());
                 }
 
-
-/*                SpannableString spannableString = new SpannableString(txt.getText().toString());
-                ForegroundColorSpan foregroundSpan = new ForegroundColorSpan(Color.RED);
-                spannableString.setSpan(foregroundSpan, 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-                txtColor.setText(spannableString);*/
-
                 if (rdbSearchArabic.isChecked()) {
                     cur = myDbHelper.search_fields("contain", txt.getText().toString());
                 } else if (rdbSearchPersian.isChecked()) {
@@ -80,12 +73,6 @@ public class SearchingActivity extends AppCompatActivity {
 
                             theList.add(cur.getString(1));
                         } else if (rdbSearchPersian.isChecked()) {
-/*
-                            String curField = coloringTextSearch(cur.getString(2), txt.getText().toString());
-
-                            txtColor.setText(curField);
-*/
-
                             theList.add(cur.getString(2));
                         }
                 }
@@ -120,69 +107,5 @@ public class SearchingActivity extends AppCompatActivity {
         myDbHelper.close();
         this.finish();
     }
-
-
-    private String highlightString(String input, String mTextView) {
-
-        //Get the text from text view and create a spannable string
-        SpannableString spannableString = new SpannableString(mTextView);
-
-        //Get the previous spans and remove them
-        BackgroundColorSpan[] backgroundSpans = spannableString.getSpans(0, spannableString.length(), BackgroundColorSpan.class);
-        for (BackgroundColorSpan span : backgroundSpans) {
-            spannableString.removeSpan(span);
-        }
-
-        //Search for all occurrences of the keyword in the string
-        int indexOfKeyword = spannableString.toString().indexOf(input);
-
-        while (indexOfKeyword > 0) {
-            //Create a background color span on the keyword
-            spannableString.setSpan(new BackgroundColorSpan(Color.YELLOW), indexOfKeyword, indexOfKeyword + input.length(), SpannedString.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-            //Get the next index of the keyword
-            indexOfKeyword = spannableString.toString().indexOf(input, indexOfKeyword + input.length());
-        }
-
-        //Set the final text on TextView
-        return spannableString.toString();
-    }
-
-
-
-
-    public String coloringTextSearch(String cursorText, String textToSearch){
-
-        //Spannable string to highlight matching searched words
-        SpannableString spannableStringSearch = null;
-
-        if ((textToSearch != null) && (!textToSearch.isEmpty())) {
-            spannableStringSearch = new SpannableString(cursorText);
-
-            //compile the pattern of input text
-            Pattern pattern = Pattern.compile(textToSearch,
-                    Pattern.CASE_INSENSITIVE);
-
-            //giving the compliled pattern to matcher to find matching pattern in cursor text
-            Matcher matcher = pattern.matcher(cursorText);
-            spannableStringSearch.setSpan(new BackgroundColorSpan(
-                            Color.TRANSPARENT), 0, spannableStringSearch.length(),
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            while (matcher.find()) {
-
-                //highlight all matching words in cursor with white background(since i have a colorfull background image)
-                spannableStringSearch.setSpan(new BackgroundColorSpan(
-                                Color.WHITE), matcher.start(), matcher.end(),
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            }
-        }
-
-            //else set plain cursor text
-            return spannableStringSearch.toString();
-
-    }
-
-
-
 
 }
