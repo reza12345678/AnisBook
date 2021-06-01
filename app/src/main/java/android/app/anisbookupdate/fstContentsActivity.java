@@ -44,7 +44,6 @@ public class fstContentsActivity extends AppCompatActivity {
                 }
 
                 cur = myDbHelper.get_snd_content(unit_param);
-                //cur     =myDbHelper.get_all("title", unit_param);
                 Hawk.put("unit_param", unit_param);
 
                 if (cur.getCount() > 1) {
@@ -59,8 +58,6 @@ public class fstContentsActivity extends AppCompatActivity {
                         int pa_id_tblAnis = 0;
 
                         Cursor cursor = myDbHelper.get_title(lst_title);
-                        //Cursor cursor = myDbHelper.get_all("title", lst_title);
-
                         while (cursor.moveToNext())
                             pa_id_tblAnis = cursor.getInt(0);
                         Hawk.put("tblAnis_id", pa_id_tblAnis);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.anisbookupdate.Adapter.search_adapter;
 import android.app.anisbookupdate.Utilities.MyApplication;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Color;
@@ -16,12 +17,19 @@ import android.text.SpannedString;
 import android.text.TextWatcher;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.orhanobut.hawk.Hawk;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,6 +43,8 @@ public class SearchingActivity extends AppCompatActivity {
     ListView lstSearch;
     RadioButton rdbSearchPersian, rdbSearchArabic;
     TextView txtColor;
+
+    public static Map<String, Integer> mapList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +71,7 @@ public class SearchingActivity extends AppCompatActivity {
                 } else if (rdbSearchPersian.isChecked()) {
                     cur = myDbHelper.search_fields("translate", txt.getText().toString());
                 }
+
                 ArrayList<String> theList = new ArrayList<>();
                 search_adapter list_adapter = new search_adapter(MyApplication.mContex, theList, txt.getText().toString());
 
@@ -70,10 +81,11 @@ public class SearchingActivity extends AppCompatActivity {
                 } else {
                     while (cur.moveToNext())
                         if (rdbSearchArabic.isChecked()) {
-
                             theList.add(cur.getString(1));
+                            mapList.put(cur.getString(1), cur.getInt(0));
                         } else if (rdbSearchPersian.isChecked()) {
                             theList.add(cur.getString(2));
+                            mapList.put(cur.getString(2), cur.getInt(0));
                         }
                 }
                 lstSearch.setAdapter(list_adapter);
@@ -91,6 +103,7 @@ public class SearchingActivity extends AppCompatActivity {
     }
 
     private void bind() {
+        mapList = new HashMap<String, Integer>();
 
         txtColor = findViewById(R.id.textColors);
 
@@ -99,6 +112,20 @@ public class SearchingActivity extends AppCompatActivity {
 
         rdbSearchPersian = findViewById(R.id.rdbSearchInPersian);
         rdbSearchArabic = findViewById(R.id.rdbSearchInArabic);
+
+        lstSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String tblAnis_id = (String) parent.getItemAtPosition(position);
+
+                int value = (int) mapList.get(tblAnis_id);
+                toast(String.valueOf(value));
+                Hawk.put("tblAnis_id", value);
+
+                Intent contain_activity = new Intent(MyApplication.mContex, ContainerActivity.class);
+                startActivity(contain_activity);
+            }
+        });
     }
 
     @Override
