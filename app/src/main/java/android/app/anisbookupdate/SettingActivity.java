@@ -70,7 +70,6 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         txtExplainFontFA = findViewById(R.id.txtExplain_FA);
         txtExplainFontAB = findViewById(R.id.txtExplain_AB);
 
-
         findViewById(R.id.btnThemeBack).setOnClickListener(this);
         findViewById(R.id.btnTextColor_FA).setOnClickListener(this);
         findViewById(R.id.btnTextColor_AB).setOnClickListener(this);

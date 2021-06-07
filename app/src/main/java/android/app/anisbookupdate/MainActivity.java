@@ -13,9 +13,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import com.erkutaras.showcaseview.ShowcaseManager;
+
+/*import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
-import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;*/
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,7 +35,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         showcaseToggle();
     }
 
-    private void showcaseToggle() {
+    public void showcaseToggle() {
+        ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
+        builder.context(MainActivity.this)
+                .key("IDOne")   //to decide this showcase is displayed or not
+                .view(btnToggle)    //showcase will be displayed for this view
+                .descriptionTitle("LOREM IPSUM")    //view title
+                .descriptionText("for the first time that i show the showcase")     //short description of view's purpose
+                .roundedRectangle() //show the round rectangle of button
+                .add()  //adding the new showcase and can be called more than one to display multiple showcaseview
+                .build()  //prepare the focus area(s)
+                .show();
+    }
+
+
+/*    private void showcaseToggle() {
         new MaterialShowcaseView.Builder(this)
                 .setTarget(btnToggle)
                 .setDismissText("متوجه شدم")
@@ -64,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         sequence.start();
 
-    }
+    }*/
 
     private void bind() {
         drawer = findViewById(R.id.drawerLay);
@@ -97,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.btnToggle) {
             if (!drawer.isDrawerOpen(Gravity.RIGHT))
                 drawer.openDrawer(Gravity.RIGHT);
-            showcasepanel();
+            //showcasepanel();
         }
 
         if (v.getId() == R.id.btnSetting) {

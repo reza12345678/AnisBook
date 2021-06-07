@@ -13,19 +13,19 @@ public class MyTextView_FA extends AppCompatTextView {
     public MyTextView_FA(@NonNull Context context) {
         super(context);
         setTypeface(Utility.getTypeFace_FA());
-      //  setTextSize(Hawk.get("font_size_FA"));
+        setTextSize(Hawk.get("font_size_FA"));
     }
 
     public MyTextView_FA(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        //setTypeface(Utility.getTypeFace_FA());
-       // setTextSize(Hawk.get("font_size_FA"));
+        setTypeface(Utility.getTypeFace_FA());
+        setTextSize(Hawk.get("font_size_FA"));
     }
 
     public MyTextView_FA(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-       // setTypeface(Utility.getTypeFace_FA());
-       // setTextSize(Hawk.get("font_size_FA"));
+        setTypeface(Utility.getTypeFace_FA());
+        setTextSize(Hawk.get("font_size_FA"));
     }
 }
 
