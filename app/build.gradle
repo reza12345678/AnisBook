@@ -41,15 +41,11 @@ dependencies {
     //this library can save data HAWK
     implementation "com.orhanobut:hawk:2.0.1"
 
-/*    //material io
-    implementation 'com.github.rey5137:material:1.3.1'*/
+
+    implementation 'com.github.deano2390:MaterialShowcaseView:1.3.4'
 
     // showcase panel
-   // implementation 'com.github.deano2390:MaterialShowcaseView:1.3.4'
-
-
-    implementation 'com.github.erkutaras:ShowcaseView:1.5.0'
-
+    implementation 'com.github.faruktoptas:FancyShowCaseView:1.3.5'
 
     // color picker dialog box
     implementation 'com.github.QuadFlask:colorpicker:0.0.15'

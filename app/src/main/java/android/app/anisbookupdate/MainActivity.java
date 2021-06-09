@@ -5,26 +5,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.anisbookupdate.Utilities.MyApplication;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 
-import com.erkutaras.showcaseview.ShowcaseManager;
-
-/*import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import me.toptas.fancyshowcase.FancyShowCaseQueue;
+import me.toptas.fancyshowcase.FancyShowCaseView;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
-import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;*/
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     DrawerLayout drawer;
 
     ImageButton btnToggle;
-    Button btnContents, btnSetting;
+    Button btnContents, btnSetting, btnSearch, btnSigned;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,55 +30,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         bind();
+
         showcaseToggle();
+
     }
 
-    public void showcaseToggle() {
-        ShowcaseManager.Builder builder = new ShowcaseManager.Builder();
-        builder.context(MainActivity.this)
-                .key("IDOne")   //to decide this showcase is displayed or not
-                .view(btnToggle)    //showcase will be displayed for this view
-                .descriptionTitle("LOREM IPSUM")    //view title
-                .descriptionText("for the first time that i show the showcase")     //short description of view's purpose
-                .roundedRectangle() //show the round rectangle of button
-                .add()  //adding the new showcase and can be called more than one to display multiple showcaseview
-                .build()  //prepare the focus area(s)
-                .show();
-    }
-
-
-/*    private void showcaseToggle() {
+    private void showcaseToggle() {
         new MaterialShowcaseView.Builder(this)
                 .setTarget(btnToggle)
+                .setTitleText("منوی اصلی برنامه")
                 .setDismissText("متوجه شدم")
-                .setContentText("برای دیدن فهرست مطالب و تنظیمات برنامه بر روی این دکمه کلیک کنید")
-                .setDelay(1000) // optional but starting animations immediately in onCreate can make them choppy
+                .setContentText("برای دیدن منوهای مختلف برنامه بر روی این دکمه کلیک کنید")
                 .singleUse("IDOne") // provide a unique ID used to ensure it is only shown once
-                .setGravity(Gravity.CENTER)
                 .show();
     }
 
-    private void showcasepanel() {
 
-        // sequence example
+    private void showCaseContents() {
+// sequence example
         ShowcaseConfig config = new ShowcaseConfig();
         config.setDelay(500); // half second between each showcase view
-        config.setDismissTextColor(Color.RED);
 
-
-        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "IDTwO");
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "IDTwo");
 
         sequence.setConfig(config);
+        sequence.hasFired();
 
-        sequence.addSequenceItem(btnContents,
-                "برای نمایش فهرست مطالب بر روی این دکمه کلیک کنید", "متوجه شدم");
+        sequence.addSequenceItem(btnContents, "فهرست مطالب",
+                "برای مشاهده فهرست مطالب بر روی این دکمه کلیک کنید", "متوجه شدم");
 
-        sequence.addSequenceItem(btnSetting,
-                "برای تنظیمات برنامه بر روی این دکمه کلیک کنید", "متوجه شدم");
+        sequence.addSequenceItem(btnSetting, "تنظیمات",
+                "برای دیدن صفحه ی تنظیمات بر روی این دکمه کلیک کنید", "متوجه شدم");
+
+        sequence.addSequenceItem(btnSearch, "جستجوی مطالب",
+                "برای جستجوی مطالب بر روی این دکمه کلیک کنید", "متوجه شدم");
+
+        sequence.addSequenceItem(btnSigned, "نشان گذاری",
+                "برای مشاهده کردن صفحات علامت گذاری شده وارد این بخش شوید", "متوجه شدم");
 
         sequence.start();
 
-    }*/
+    }
 
     private void bind() {
         drawer = findViewById(R.id.drawerLay);
@@ -94,12 +84,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSetting = findViewById(R.id.btnSetting);
         btnSetting.setOnClickListener(this);
 
+        btnSearch = findViewById(R.id.btnSearch);
+        btnSearch.setOnClickListener(this);
+
+
+        btnSigned = findViewById(R.id.btnSigned);
+        btnSigned.setOnClickListener(this);
+
         findViewById(R.id.btnCloseApp).setOnClickListener(this);
         findViewById(R.id.btnSeenLast).setOnClickListener(this);
         findViewById(R.id.btnRelateUs).setOnClickListener(this);
         findViewById(R.id.btnAbout).setOnClickListener(this);
-        findViewById(R.id.btnSearch).setOnClickListener(this);
-        findViewById(R.id.btnSigned).setOnClickListener(this);
 
     }
 
@@ -113,7 +108,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.btnToggle) {
             if (!drawer.isDrawerOpen(Gravity.RIGHT))
                 drawer.openDrawer(Gravity.RIGHT);
-            //showcasepanel();
+
+            showCaseContents();
         }
 
         if (v.getId() == R.id.btnSetting) {
