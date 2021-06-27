@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSigned.setOnClickListener(this);
 
         findViewById(R.id.btnCloseApp).setOnClickListener(this);
-        findViewById(R.id.btnSeenLast).setOnClickListener(this);
         findViewById(R.id.btnRelateUs).setOnClickListener(this);
         findViewById(R.id.btnAbout).setOnClickListener(this);
 

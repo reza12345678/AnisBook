@@ -42,7 +42,6 @@ public class SearchingActivity extends AppCompatActivity {
     Cursor cur = null;
     ListView lstSearch;
     RadioButton rdbSearchPersian, rdbSearchArabic;
-    TextView txtColor;
 
     public static Map<String, Integer> mapList;
 
@@ -67,7 +66,7 @@ public class SearchingActivity extends AppCompatActivity {
                 }
 
                 if (rdbSearchArabic.isChecked()) {
-                    cur = myDbHelper.search_fields("contain", txt.getText().toString());
+                    cur = myDbHelper.search_fields_two("contain", txt.getText().toString());
                 } else if (rdbSearchPersian.isChecked()) {
                     cur = myDbHelper.search_fields("translate", txt.getText().toString());
                 }
@@ -104,8 +103,6 @@ public class SearchingActivity extends AppCompatActivity {
 
     private void bind() {
         mapList = new HashMap<String, Integer>();
-
-        txtColor = findViewById(R.id.textColors);
 
         txt = findViewById(R.id.edSearch);
         lstSearch = findViewById(R.id.lstSearch);

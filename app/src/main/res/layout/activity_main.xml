@@ -109,17 +109,6 @@
             android:text="نشان شده ها"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/btnSeenLast"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/button_corner"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:text="آخرین مشاهده"
-            android:textSize="20sp" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"

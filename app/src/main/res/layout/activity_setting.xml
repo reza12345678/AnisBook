@@ -10,31 +10,58 @@
         android:id="@+id/rootView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:orientation="vertical">
 
-        <TextView
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="تنظیمات برنامه"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            android:layout_height="55dp"
+            android:background="@color/toolbar">
 
-        <View
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="انیس الصادقین"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/black" />
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="مدیریت تم های برنامه"
-            android:textAlignment="textStart"
-            android:textSize="15sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="تنظیمات برنامه"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-        <RelativeLayout
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="مدیریت تم های برنامه"
+                android:textAlignment="textStart"
+                android:textSize="15sp" />
+
+
+                    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
@@ -294,6 +321,13 @@
             android:text="اعمال تغییرات"
             android:textColor="@color/black"
             android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+
+
+
     </LinearLayout>
 
 </ScrollView>

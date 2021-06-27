@@ -17,9 +17,10 @@
             android:background="@color/toolbar">
 
             <TextView
+                android:id="@+id/txtContainerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="center"
                 android:layout_marginRight="30dp"
                 android:text="فهرست مطالب"
                 android:textColor="@color/white"

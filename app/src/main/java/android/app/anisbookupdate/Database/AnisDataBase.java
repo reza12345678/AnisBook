@@ -1,4 +1,4 @@
-package android.app.anisbookupdate.Database;
+ package android.app.anisbookupdate.Database;
 
 
 import android.content.Context;
@@ -152,6 +152,10 @@ public class AnisDataBase extends SQLiteOpenHelper {
     }
 
     public Cursor search_fields(String fieldContain, String param) {
+        return myDataBase.rawQuery("SELECT * FROM tblContainer where " + fieldContain + " like '%" + param + "%'", null);
+    }
+
+    public Cursor search_fields_two(String fieldContain, String param) {
         return myDataBase.rawQuery("SELECT * FROM tblContainer where " + fieldContain + " like '%" + param + "%'", null);
     }
 

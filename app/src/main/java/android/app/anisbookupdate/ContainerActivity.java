@@ -15,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.orhanobut.hawk.Hawk;
 
@@ -38,6 +39,8 @@ public class ContainerActivity extends AppCompatActivity {
     public int tblAnis_id, favorite_Id;
     Switch swhSign;
 
+    TextView txtTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,8 @@ public class ContainerActivity extends AppCompatActivity {
         lstContainer = findViewById(R.id.lstContainer);
         rootView = findViewById(R.id.contentView);
         rtlFooter = findViewById(R.id.rtlFooter);
+
+        txtTitle = findViewById(R.id.txtContainerTitle);
 
         swhSign = findViewById(R.id.swhSign);
 
@@ -84,8 +89,6 @@ public class ContainerActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     public void load_Data() {
@@ -120,8 +123,11 @@ public class ContainerActivity extends AppCompatActivity {
         } else {
             while (cursor.moveToNext()) {
                 favorite_Id = cursor.getInt(3);
+                txtTitle.setText(cursor.getString(2));
             }
         }
+
+
         if (favorite_Id == 1)
             swhSign.setChecked(true);
         else
