@@ -1,8 +1,10 @@
 package android.app.anisbookupdate;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
 import android.app.anisbookupdate.Adapter.search_adapter;
+import android.app.anisbookupdate.Utilities.DiacriticInsensitiveSearch;
 import android.app.anisbookupdate.Utilities.MyApplication;
 import android.content.Intent;
 import android.database.Cursor;
@@ -35,13 +37,16 @@ import java.util.regex.Pattern;
 
 import static android.app.anisbookupdate.Utilities.MyApplication.myDbHelper;
 import static android.app.anisbookupdate.Utilities.Utility.toast;
+import static android.app.anisbookupdate.Utilities.DiacriticInsensitiveSearch.*;
+
+import android.app.anisbookupdate.Utilities.ABHArabicDiacritics.*;
+
 
 public class SearchingActivity extends AppCompatActivity {
 
-    AutoCompleteTextView txt;
     Cursor cur = null;
     ListView lstSearch;
-    RadioButton rdbSearchPersian, rdbSearchArabic;
+    SearchView txtSRC;
 
     public static Map<String, Integer> mapList;
 
@@ -51,64 +56,51 @@ public class SearchingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_searching);
 
         bind();
-        txt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+
+        txtSRC.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public boolean onQueryTextChange(String newText) {
+
                 try {
                     myDbHelper.openDataBase();
                 } catch (SQLException e) {
                     toast(e.toString());
                 }
 
-                if (rdbSearchArabic.isChecked()) {
-                    cur = myDbHelper.search_fields_two("contain", txt.getText().toString());
-                } else if (rdbSearchPersian.isChecked()) {
-                    cur = myDbHelper.search_fields("translate", txt.getText().toString());
-                }
+                cur = myDbHelper.search_fields("title", newText);
 
                 ArrayList<String> theList = new ArrayList<>();
-                search_adapter list_adapter = new search_adapter(MyApplication.mContex, theList, txt.getText().toString());
+                search_adapter list_adapter = new search_adapter(MyApplication.mContex, theList, newText);
 
                 if (cur.getCount() == 0) {
                     lstSearch.setAdapter(null);
-                    return;
+                    return false;
                 } else {
-                    while (cur.moveToNext())
-                        if (rdbSearchArabic.isChecked()) {
-                            theList.add(cur.getString(1));
-                            mapList.put(cur.getString(1), cur.getInt(0));
-                        } else if (rdbSearchPersian.isChecked()) {
-                            theList.add(cur.getString(2));
-                            mapList.put(cur.getString(2), cur.getInt(0));
-                        }
+                    while (cur.moveToNext()) {
+                        theList.add(cur.getString(2));
+                        mapList.put(cur.getString(2), cur.getInt(0));
+                    }
                 }
                 lstSearch.setAdapter(list_adapter);
 
-                if (count == 0) {
-                    lstSearch.setAdapter(null);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
+                return false;
             }
         });
+
     }
 
     private void bind() {
         mapList = new HashMap<String, Integer>();
 
-        txt = findViewById(R.id.edSearch);
-        lstSearch = findViewById(R.id.lstSearch);
+        txtSRC = findViewById(R.id.edsearch);
 
-        rdbSearchPersian = findViewById(R.id.rdbSearchInPersian);
-        rdbSearchArabic = findViewById(R.id.rdbSearchInArabic);
+        lstSearch = findViewById(R.id.lstSearch);
 
         lstSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -116,7 +108,6 @@ public class SearchingActivity extends AppCompatActivity {
                 String tblAnis_id = (String) parent.getItemAtPosition(position);
 
                 int value = (int) mapList.get(tblAnis_id);
-                toast(String.valueOf(value));
                 Hawk.put("tblAnis_id", value);
 
                 Intent contain_activity = new Intent(MyApplication.mContex, ContainerActivity.class);
