@@ -10,6 +10,7 @@ import android.app.anisbookupdate.Utilities.MyTextView_AB;
 import android.app.anisbookupdate.Utilities.MyTextView_FA;
 import android.app.anisbookupdate.Utilities.Utility;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Color;
@@ -55,6 +56,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
     String bg_color = null, ft_color_fa = null, ft_color_ab = null;
 
+    int actContin;
+    int tbl_id;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,14 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         bind();
         loadDefaults();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+        myDbHelper.close();
+    }
+
 
     private void bind() {
         txtExplainFontFA = findViewById(R.id.txtExplain_FA);
@@ -263,12 +275,6 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         txtFontSizeAB.setTextSize((float) fontSizeAB_Default);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        this.finish();
-        myDbHelper.close();
-    }
 
     @Override
     public void onClick(View v) {

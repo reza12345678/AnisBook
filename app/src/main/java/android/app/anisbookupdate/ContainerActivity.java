@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.anisbookupdate.Adapter.container_adapter;
 import android.app.anisbookupdate.Database.Container_Model;
 import android.app.anisbookupdate.Utilities.MyApplication;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Color;
@@ -25,7 +26,7 @@ import java.util.List;
 import static android.app.anisbookupdate.Utilities.MyApplication.myDbHelper;
 import static android.app.anisbookupdate.Utilities.Utility.toast;
 
-public class ContainerActivity extends AppCompatActivity {
+public class ContainerActivity extends AppCompatActivity implements View.OnClickListener {
 
     Cursor cur = null, cursor = null;
     ListView lstContainer;
@@ -89,7 +90,9 @@ public class ContainerActivity extends AppCompatActivity {
 
             }
         });
+
     }
+
 
     public void load_Data() {
         try {
@@ -151,4 +154,8 @@ public class ContainerActivity extends AppCompatActivity {
         this.finish();
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

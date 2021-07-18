@@ -4,42 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
 import android.app.anisbookupdate.Adapter.search_adapter;
-import android.app.anisbookupdate.Utilities.DiacriticInsensitiveSearch;
 import android.app.anisbookupdate.Utilities.MyApplication;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.SpannedString;
-import android.text.TextWatcher;
-import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.TextView;
 
 import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static android.app.anisbookupdate.Utilities.MyApplication.myDbHelper;
 import static android.app.anisbookupdate.Utilities.Utility.toast;
-import static android.app.anisbookupdate.Utilities.DiacriticInsensitiveSearch.*;
-
-import android.app.anisbookupdate.Utilities.ABHArabicDiacritics.*;
 
 
 public class SearchingActivity extends AppCompatActivity {
