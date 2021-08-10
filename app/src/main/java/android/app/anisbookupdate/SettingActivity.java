@@ -56,9 +56,6 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
     String bg_color = null, ft_color_fa = null, ft_color_ab = null;
 
-    int actContin;
-    int tbl_id;
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
