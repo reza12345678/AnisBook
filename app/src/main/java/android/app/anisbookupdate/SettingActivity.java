@@ -17,11 +17,14 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +58,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     LinearLayout rootView;
 
     String bg_color = null, ft_color_fa = null, ft_color_ab = null;
+
+    Switch swhScreen;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -91,6 +96,16 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         txtExample_FA = findViewById(R.id.txtExample_FA);
         txtExample_AB = findViewById(R.id.txtExample_AB);
 
+        swhScreen = findViewById(R.id.swhScreenOn);
+        swhScreen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (swhScreen.isChecked()) {
+                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                    Toast.makeText(MyApplication.mContex, "با فعال کردن این گزینه تا زمانی که از برنامه استفاده میکنید ،‌صفحه نمایش روشن می ماند", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         sldFontFA.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.app.anisbookupdate">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:name=".Utilities.MyApplication"
         android:allowBackup="true"
@@ -12,7 +14,7 @@
         android:theme="@style/Theme.AnisBookUpdate">
         <activity
             android:name=".SignedActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".RelatedActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -22,11 +24,13 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".SearchingActivity"

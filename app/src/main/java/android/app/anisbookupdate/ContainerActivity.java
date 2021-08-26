@@ -53,7 +53,6 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
     private void bind() {
         lstContainer = findViewById(R.id.lstContainer);
         rootView = findViewById(R.id.contentView);
-        rtlFooter = findViewById(R.id.rtlFooter);
 
         txtTitle = findViewById(R.id.txtContainerTitle);
 
@@ -62,12 +61,34 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
         lstContainer.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                rtlFooter.setVisibility(View.VISIBLE);
+                // rtlFooter.setVisibility(View.VISIBLE);
                 return true;
             }
         });
 
-        swhSign.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+        //swhSign.on
+
+        if (swhSign.isChecked()){
+            try {
+                myDbHelper.EditDataBase();
+            } catch (SQLException e) {
+                toast(e.toString());
+            }
+            myDbHelper.update_tblAnis("favorite", 1, tblAnis_id);
+            toast("این قسمت به لیست نشان شده ها اضافه گردید");
+        } else if (!swhSign.isChecked()) {
+            try {
+                myDbHelper.EditDataBase();
+            } catch (SQLException e) {
+                toast(e.toString());
+            }
+            myDbHelper.update_tblAnis("favorite", 0, tblAnis_id);
+            toast("این قسمت از لیست نشان شده ها حذف گردید");
+        }
+
+
+/*        swhSign.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (swhSign.isChecked()) {
@@ -89,7 +110,7 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
                 }
 
             }
-        });
+        });*/
 
     }
 
